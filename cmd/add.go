@@ -5,6 +5,8 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 	"github.com/balagrivine/todoist/todo"
 )
@@ -42,5 +44,7 @@ func addRun(cmd *cobra.Command, args []string) {
 	for _, val := range args {
 		items = append(items, todo.Item{val})
 	}
-	todo.SaveItems("x", items)
+	if err := todo.SaveItems("./.todos.json", items); err != nil {
+		fmt.Errorf("Error: %v\n", err)
+	}
 }
