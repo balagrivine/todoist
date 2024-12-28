@@ -1,1 +1,1 @@
-[{"Text":"three"},{"Text":"two"}]
+[{"Text":"three","Priority":0},{"Text":"two","Priority":0},{"Text":"list priority","Priority":2},{"Text":"set priority","Priority":2}]

@@ -9,6 +9,7 @@ import (
 
 	"github.com/spf13/cobra"
 	_ "github.com/spf13/viper"
+	_ "github.com/mitchellh/go-homedir"
 )
 
 
@@ -41,8 +42,13 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
+	// var dataFile string
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.todoist.yaml)")
+	// home, err := homedir.Dir(); if err != nil {
+	//	fmt.Println("Unable to detect home directory. Please set data file using --datafile")
+	// }
+	// rootCmd.PersistentFlags().StringVar(&dataFile, "datafile",
+	// home+string(os.PathSeparator)+".todos.json", "Data file to store todos")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.

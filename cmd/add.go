@@ -28,6 +28,8 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(addCmd)
 
+	var priority int
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
@@ -36,17 +38,23 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	addCmd.Flags().IntVarP(&priority, "priority", "p", 2, "priority: 1, 2, 3")
 }
 
 func addRun(cmd *cobra.Command, args []string) {
+
+	var (
+		priority int
+	)
 
 	items, err := todo.ReadItems("./.todos.json"); if err != nil {
 		log.Printf("Error: %v\n", err)
 	}
 
 	for _, val := range args {
-		items = append(items, todo.Item{val})
+		item := todo.Item{Text: val}
+		item.SetPriority(priority)
+		items = append(items, item)
 	}
 	if err := todo.SaveItems("./.todos.json", items); err != nil {
 		fmt.Errorf("Error: %v\n", err)
